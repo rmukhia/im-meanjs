@@ -8,7 +8,7 @@ RUN apt-get update && apt-get install -y apt-utils && apt-get install -y curl bu
 RUN curl -sL https://deb.nodesource.com/setup_4.x | bash -a && apt-key adv --keyserver hkp://keyserver.ubuntu.com --recv EA312927 && echo "deb http://repo.mongodb.org/apt/debian wheezy/mongodb-org/3.2 main" | tee /etc/apt/sources.list.d/mongodb-org-3.2.list
 
 # Update again, and install Node.js and mongodb and sass gem. Create dev user. Set up mongodb log permissions and parameters.
-RUN apt-get update && apt-get install -y nodejs mongodb-org-server && npm install -g npm && gem install sass && useradd -ms /bin/bash dev && mkdir -p /data/db && chown dev:dev /data/db && echo "never" > /sys/kernel/mm/transparent_hugepage/enabled && echo "never" > /sys/kernel/mm/transparent_hugepage/defrag
+RUN apt-get update && apt-get install -y nodejs mongodb-org-server && npm install -g npm && gem install sass && useradd -ms /bin/bash dev && mkdir -p /data/db && chown dev:dev /data/db
 
 # Set up dev
 USER dev
