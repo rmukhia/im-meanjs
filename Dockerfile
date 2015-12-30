@@ -1,6 +1,4 @@
 FROM debian
-ENV TERM=xterm
-
 # Update and install essential packages
 RUN apt-get update && apt-get install -y apt-utils && apt-get install -y curl build-essential git dos2unix ruby 
 
@@ -13,8 +11,7 @@ RUN apt-get update && apt-get install -y nodejs mongodb-org-server && npm instal
 # Set up dev
 USER dev
 WORKDIR /home/dev
-# Symlinks on mounted directories do not seem to work, include path to actual bower script to enable `yo meanjs` on mounted directory. 
-ENV PATH=~/.npm-global/lib/node_modules/bower/bin/:~/.npm-global/bin:$PATH
-# Create directories, set npm configurations, install bower, grunt, yo and generator-meanjs. Set bin-links to false so that npm works without symlinks in mounted directory.
-RUN mkdir ~/.npm-global && mkdir ~/logs && npm config set prefix '~/.npm-global' && npm install -g bower grunt-cli yo generator-meanjs &&  mkdir ~/config && npm config set bin-links false && rm ~/.npm-global/bin/bower
+ENV PATH=~/.npm-global/bin:$PATH
+# Create directories, set npm configurations, install bower, grunt, yo and generator-meanjs. 
+RUN mkdir ~/.npm-global && mkdir ~/logs && npm config set prefix '~/.npm-global' && npm install -g bower grunt-cli yo generator-meanjs &&  mkdir ~/config
 COPY configurations/mongod.conf /home/dev/config/mongod.conf
