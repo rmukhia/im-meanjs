@@ -17,4 +17,4 @@ WORKDIR /home/dev
 ENV PATH=~/.npm-global/lib/node_modules/bower/bin/:~/.npm-global/bin:$PATH
 # Create directories, set npm configurations, install bower, grunt, yo and generator-meanjs. Set bin-links to false so that npm works without symlinks in mounted directory.
 RUN mkdir ~/.npm-global && mkdir ~/logs && npm config set prefix '~/.npm-global' && npm install -g bower grunt-cli yo generator-meanjs &&  mkdir ~/config && npm config set bin-links false && rm ~/.npm-global/bin/bower
-COPY config/mongod.conf /home/dev/config/mongod.conf
+COPY configurations/mongod.conf /home/dev/config/mongod.conf
