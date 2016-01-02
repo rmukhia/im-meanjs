@@ -6,6 +6,7 @@ The main goal of this image is to provide an easy way to try out developing MEAN
 Have fun using **I** a**m** **MEAN.JS**.
 
 Visit dockerhub repository [rmukhia/im-meanjs][docker hub].
+Visit github repository [rmukhia/im-meanjs][git hub]
 
 ##### Run
 
@@ -16,13 +17,14 @@ Visit dockerhub repository [rmukhia/im-meanjs][docker hub].
 Pull im-meanjs from _dockerhub_.
 
 ```bash
-~$ docker run -i -t -p 3000:3000 -v $('pwd'):/home/dev/projects rmukhia/im-meanjs bash
+~$ docker run -i -t -p 3000:3000 -p 35729:35729 -v $('pwd'):/home/dev/projects rmukhia/im-meanjs bash
 ```
 
 Create a docker _container_.
 * ```-i``` interactive
 * ```-t``` attach to terminal
 * ```-p 3000:3000``` map the host port 3000 to the container 3000 port
+* ```-p 35729:35729``` map the host port 35729 to the container's 35729 port; this is required for [livereload.js][livereload]
 * ```-v $('pwd'):/home/dev/projects``` mount the host's present working directory to container's /home/dev/projects directory
 * ```rmukhia/im-meanjs``` image name
 * ```bash``` open an interactive shell
@@ -66,11 +68,6 @@ Use yomean to generate a MEAN.JS application. Create a new project myapp in myap
 This will take some time.
 
 ```bash
-projects $ cd myapp
-```
-Change the present working directory to myapp.
-
-```bash
 myapp$ grunt
 ```
 Start MEAN.JS application.
@@ -101,3 +98,5 @@ im-meanjs is debian based and has the following features:
 
  
 [docker hub]: https://hub.docker.com/add/automated-build/github/orgs/?namespace=rmukhia
+[git hub]: https://github.com/rmukhia/im-meanjs
+[livereload]: https://www.npmjs.com/package/livereload

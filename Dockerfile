@@ -17,3 +17,8 @@ ENV PATH=~/.npm-global/bin:$PATH
 # Create directories, set npm configurations, install bower, grunt, yo and generator-meanjs. 
 RUN mkdir ~/.npm-global && mkdir ~/logs && npm config set prefix '~/.npm-global' && npm install -g bower grunt-cli yo@1.3.3  generator-meanjs@0.1.12 &&  mkdir ~/config
 COPY configurations/mongod.conf /home/dev/config/mongod.conf
+
+# Expose MEANJS http port
+EXPOSE 3000 3000
+# Expose livereload.js port
+EXPOSE 35729 35729
